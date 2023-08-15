@@ -47,11 +47,10 @@ export class FrontMatterSettingTab extends SettingTab {
       setting.addName(t.propCreated)
       setting.addDescription(t.propCreatedDesc)
       setting.addText(input => {
-        const { settings } = plugin
-        input.value = settings.propNameCreated
+        input.value = plugin.settings.propNameCreated
         input.placeholder = DEFAULT_SETTINGS.propNameCreated
         input.oninput = () => {
-          settings.propNameCreated = input.value ?? DEFAULT_SETTINGS.propNameCreated
+          plugin.settings.propNameCreated = input.value ?? DEFAULT_SETTINGS.propNameCreated
           plugin.saveSettings()
         }
       })
@@ -61,11 +60,10 @@ export class FrontMatterSettingTab extends SettingTab {
       setting.addName(t.propUpdated)
       setting.addDescription(t.propUpdatedDesc)
       setting.addText(input => {
-        const { settings } = plugin
-        input.value = settings.propNameUpdated
+        input.value = plugin.settings.propNameUpdated
         input.placeholder = DEFAULT_SETTINGS.propNameUpdated
         input.oninput = () => {
-          settings.propNameUpdated = input.value ?? DEFAULT_SETTINGS.propNameUpdated
+          plugin.settings.propNameUpdated = input.value ?? DEFAULT_SETTINGS.propNameUpdated
           plugin.saveSettings()
         }
       })
@@ -75,11 +73,10 @@ export class FrontMatterSettingTab extends SettingTab {
       setting.addName(t.dateFormat)
       setting.addDescription(t.dateFormatDesc)
       setting.addText(input => {
-        const { settings } = plugin
-        input.value = settings.dateFormat
+        input.value = plugin.settings.dateFormat
         input.placeholder = DEFAULT_SETTINGS.dateFormat
         input.oninput = () => {
-          settings.dateFormat = input.value ?? DEFAULT_SETTINGS.dateFormat
+          plugin.settings.dateFormat = input.value ?? DEFAULT_SETTINGS.dateFormat
           plugin.saveSettings()
         }
       })

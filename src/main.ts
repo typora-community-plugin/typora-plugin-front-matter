@@ -10,7 +10,7 @@ export default class extends Plugin {
 
   async onload() {
 
-    const { app, settings } = this
+    const { app } = this
 
     await this.loadSettings()
 
@@ -26,7 +26,7 @@ export default class extends Plugin {
           editor.stylize.insertMetaBlock()
         }
         if (isEmptyDoc) {
-          docMenu.writeProperty(settings.propNameCreated, nowDatetime(settings.dateFormat))
+          docMenu.writeProperty(this.settings.propNameCreated, nowDatetime(this.settings.dateFormat))
         }
       }))
 
@@ -37,7 +37,7 @@ export default class extends Plugin {
         if (docMenu.getMetaNode()) {
           editor.stylize.insertMetaBlock()
         }
-        docMenu.writeProperty(settings.propNameUpdated, nowDatetime(settings.dateFormat))
+        docMenu.writeProperty(this.settings.propNameUpdated, nowDatetime(this.settings.dateFormat))
       }))
 
     this.registerSettingTab(new FrontMatterSettingTab(this))
