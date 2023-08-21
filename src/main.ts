@@ -1,21 +1,21 @@
-import { Plugin } from '@typora-community-plugin/core'
+import { Plugin, PluginSettings } from '@typora-community-plugin/core'
 import { editor, getMarkdown } from 'typora'
 import { FrontMatterSettingTab } from './setting-tab'
 import { DEFAULT_SETTINGS, FrontMatterSettings } from './settings'
 
 
-export default class extends Plugin {
-
-  settings: FrontMatterSettings
+export default class extends Plugin<FrontMatterSettings> {
 
   async onload() {
 
     const { app } = this
 
-    await this.loadSettings()
+    this.registerSettings(
+      new PluginSettings(app, this.manifest, {
+        version: 1,
+      }))
 
-    this.register(
-      app.vault.on('mounted', () => this.loadSettings()))
+    this.settings.setDefault(DEFAULT_SETTINGS)
 
     this.register(
       app.workspace.on('file:open', () => {
@@ -26,7 +26,7 @@ export default class extends Plugin {
           editor.stylize.insertMetaBlock()
         }
         if (isEmptyDoc) {
-          docMenu.writeProperty(this.settings.propNameCreated, nowDatetime(this.settings.dateFormat))
+          docMenu.writeProperty(this.settings.get('propNameCreated'), nowDatetime(this.settings.get('dateFormat')))
         }
       }))
 
@@ -37,21 +37,10 @@ export default class extends Plugin {
         if (docMenu.getMetaNode()) {
           editor.stylize.insertMetaBlock()
         }
-        docMenu.writeProperty(this.settings.propNameUpdated, nowDatetime(this.settings.dateFormat))
+        docMenu.writeProperty(this.settings.get('propNameUpdated'), nowDatetime(this.settings.get('dateFormat')))
       }))
 
     this.registerSettingTab(new FrontMatterSettingTab(this))
-  }
-
-  onunload() {
-  }
-
-  async loadSettings() {
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData())
-  }
-
-  async saveSettings() {
-    await this.saveData(this.settings)
   }
 }
 

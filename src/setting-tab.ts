@@ -34,9 +34,6 @@ export class FrontMatterSettingTab extends SettingTab {
     super()
   }
 
-  onload() {
-  }
-
   show() {
     const { plugin } = this
     const { t } = this.i18n
@@ -47,11 +44,10 @@ export class FrontMatterSettingTab extends SettingTab {
       setting.addName(t.propCreated)
       setting.addDescription(t.propCreatedDesc)
       setting.addText(input => {
-        input.value = plugin.settings.propNameCreated
+        input.value = plugin.settings.get('propNameCreated')
         input.placeholder = DEFAULT_SETTINGS.propNameCreated
         input.oninput = () => {
-          plugin.settings.propNameCreated = input.value ?? DEFAULT_SETTINGS.propNameCreated
-          plugin.saveSettings()
+          plugin.settings.set('propNameCreated', input.value ?? DEFAULT_SETTINGS.propNameCreated)
         }
       })
     })
@@ -60,11 +56,10 @@ export class FrontMatterSettingTab extends SettingTab {
       setting.addName(t.propUpdated)
       setting.addDescription(t.propUpdatedDesc)
       setting.addText(input => {
-        input.value = plugin.settings.propNameUpdated
+        input.value = plugin.settings.get('propNameUpdated')
         input.placeholder = DEFAULT_SETTINGS.propNameUpdated
         input.oninput = () => {
-          plugin.settings.propNameUpdated = input.value ?? DEFAULT_SETTINGS.propNameUpdated
-          plugin.saveSettings()
+          plugin.settings.set('propNameUpdated', input.value ?? DEFAULT_SETTINGS.propNameUpdated)
         }
       })
     })
@@ -73,11 +68,10 @@ export class FrontMatterSettingTab extends SettingTab {
       setting.addName(t.dateFormat)
       setting.addDescription(t.dateFormatDesc)
       setting.addText(input => {
-        input.value = plugin.settings.dateFormat
+        input.value = plugin.settings.get('dateFormat')
         input.placeholder = DEFAULT_SETTINGS.dateFormat
         input.oninput = () => {
-          plugin.settings.dateFormat = input.value ?? DEFAULT_SETTINGS.dateFormat
-          plugin.saveSettings()
+          plugin.settings.set('dateFormat', input.value ?? DEFAULT_SETTINGS.dateFormat)
         }
       })
     })
