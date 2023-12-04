@@ -12,7 +12,7 @@ const IS_DEV = !IS_PROD
 await fs.rm('./dist', { recursive: true, force: true })
 
 await esbuild.build({
-  entryPoints: ['src/main.ts', 'src/style.css'],
+  entryPoints: ['src/main.ts'],
   outdir: 'dist',
   format: 'esm',
   bundle: true,
