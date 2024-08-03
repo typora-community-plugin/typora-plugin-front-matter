@@ -6,6 +6,7 @@ This a plugin based on [typora-community-plugin](https://github.com/typora-commu
 
 Auto edit front matter:
 
+- After openning empty note, auto add properties in settings;
 - After openning empty note, auto add `created` datetime;
 - Before save note, auto update `updated` datetime.
 
