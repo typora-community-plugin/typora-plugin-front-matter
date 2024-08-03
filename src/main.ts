@@ -26,7 +26,12 @@ export default class extends Plugin<FrontMatterSettings> {
           editor.stylize.insertMetaBlock()
         }
         if (isEmptyDoc) {
-          docMenu.writeProperty(this.settings.get('propNameCreated'), nowDatetime(this.settings.get('dateFormat')))
+          if (this.settings.get('useCreated')) {
+            docMenu.writeProperty(
+              this.settings.get('propNameCreated'),
+              nowDatetime(this.settings.get('dateFormat'))
+            )
+          }
         }
       }))
 
@@ -37,7 +42,12 @@ export default class extends Plugin<FrontMatterSettings> {
         if (docMenu.getMetaNode()) {
           editor.stylize.insertMetaBlock()
         }
-        docMenu.writeProperty(this.settings.get('propNameUpdated'), nowDatetime(this.settings.get('dateFormat')))
+        if (this.settings.get('useCreated')) {
+          docMenu.writeProperty(
+            this.settings.get('propNameUpdated'),
+            nowDatetime(this.settings.get('dateFormat'))
+          )
+        }
       }))
 
     this.registerSettingTab(new FrontMatterSettingTab(this))

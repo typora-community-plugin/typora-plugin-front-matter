@@ -43,6 +43,12 @@ export class FrontMatterSettingTab extends SettingTab {
     this.addSetting(setting => {
       setting.addName(t.propCreated)
       setting.addDescription(t.propCreatedDesc)
+      setting.addCheckbox(checkbox => {
+        checkbox.checked = plugin.settings.get('useCreated')
+        checkbox.onchange = () => {
+          plugin.settings.set('useCreated', checkbox.checked)
+        }
+      })
       setting.addText(input => {
         input.value = plugin.settings.get('propNameCreated')
         input.placeholder = DEFAULT_SETTINGS.propNameCreated
@@ -55,6 +61,12 @@ export class FrontMatterSettingTab extends SettingTab {
     this.addSetting(setting => {
       setting.addName(t.propUpdated)
       setting.addDescription(t.propUpdatedDesc)
+      setting.addCheckbox(checkbox => {
+        checkbox.checked = plugin.settings.get('useUpdated')
+        checkbox.onchange = () => {
+          plugin.settings.set('useUpdated', checkbox.checked)
+        }
+      })
       setting.addText(input => {
         input.value = plugin.settings.get('propNameUpdated')
         input.placeholder = DEFAULT_SETTINGS.propNameUpdated
