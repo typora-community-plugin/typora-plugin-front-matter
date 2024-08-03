@@ -26,6 +26,9 @@ export default class extends Plugin<FrontMatterSettings> {
           editor.stylize.insertMetaBlock()
         }
         if (isEmptyDoc) {
+          this.settings.get('propNames').forEach(propName => {
+            docMenu.writeProperty(propName, '')
+          })
           if (this.settings.get('useCreated')) {
             docMenu.writeProperty(
               this.settings.get('propNameCreated'),

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "settings": {
+    "propNames": [
+      "title",
+      "description",
+      "slug"
+    ],
+    "useCreated": true,
+    "useUpdated": true,
+    "propNameCreated": "created",
+    "propNameUpdated": "updated",
+    "dateFormat": "yyyy-MM-dd hh:mm:ss"
+  }
+}

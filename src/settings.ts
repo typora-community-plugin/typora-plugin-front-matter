@@ -1,4 +1,5 @@
 export interface FrontMatterSettings {
+  propNames: string[]
   useCreated: boolean
   useUpdated: boolean
   propNameCreated: string
@@ -7,6 +8,7 @@ export interface FrontMatterSettings {
 }
 
 export const DEFAULT_SETTINGS: FrontMatterSettings = {
+  propNames: [],
   useCreated: true,
   useUpdated: true,
   propNameCreated: 'created',
