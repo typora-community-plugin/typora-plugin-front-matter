@@ -14,6 +14,7 @@ export class FrontMatterSettingTab extends SettingTab {
       'en': {
         propNames: 'Default front matter',
         propNamesDesc: 'Add front matter property\'s key to new note automatically.\n Format: `prop1, prop2, ...`',
+        timeStamp: 'Time Stamp',
         propCreated: 'Prop `created`',
         propCreatedDesc: 'After openning empty note, auto add `created` datetime.',
         propUpdated: 'Prop `updated`',
@@ -24,6 +25,7 @@ export class FrontMatterSettingTab extends SettingTab {
       'zh-cn': {
         propNames: '默认 front matter',
         propNamesDesc: '新建笔记时自动添加的 front matter 属性。\n格式：`prop1, prop2, ...`',
+        timeStamp: '时间戳',
         propCreated: '属性 `created`',
         propCreatedDesc: '打开空白笔记后，自动添加 `created` 日期时间。',
         propUpdated: '属性 `updated`',
@@ -58,6 +60,8 @@ export class FrontMatterSettingTab extends SettingTab {
         }
       })
     })
+
+    this.addSettingTitle(t.timeStamp)
 
     this.addSetting(setting => {
       setting.addName(t.propCreated)

@@ -2,9 +2,10 @@ import { Plugin, PluginSettings } from '@typora-community-plugin/core'
 import { editor, getMarkdown } from 'typora'
 import { FrontMatterSettingTab } from './setting-tab'
 import { DEFAULT_SETTINGS, FrontMatterSettings } from './settings'
+import { useTimeStamp } from './features/time-stamp'
 
 
-export default class extends Plugin<FrontMatterSettings> {
+export default class FrontMatterPlugin extends Plugin<FrontMatterSettings> {
 
   async onload() {
 
@@ -16,6 +17,8 @@ export default class extends Plugin<FrontMatterSettings> {
       }))
 
     this.settings.setDefault(DEFAULT_SETTINGS)
+
+    const { tryToAddCreatedTime, tryToAddUpdatedTime } = useTimeStamp(this)
 
     this.register(
       app.workspace.on('file:open', () => {
@@ -29,12 +32,7 @@ export default class extends Plugin<FrontMatterSettings> {
           this.settings.get('propNames').forEach(propName => {
             docMenu.writeProperty(propName, '')
           })
-          if (this.settings.get('useCreated')) {
-            docMenu.writeProperty(
-              this.settings.get('propNameCreated'),
-              nowDatetime(this.settings.get('dateFormat'))
-            )
-          }
+          tryToAddCreatedTime()
         }
       }))
 
@@ -45,32 +43,9 @@ export default class extends Plugin<FrontMatterSettings> {
         if (docMenu.getMetaNode()) {
           editor.stylize.insertMetaBlock()
         }
-        if (this.settings.get('useCreated')) {
-          docMenu.writeProperty(
-            this.settings.get('propNameUpdated'),
-            nowDatetime(this.settings.get('dateFormat'))
-          )
-        }
+        tryToAddUpdatedTime()
       }))
 
     this.registerSettingTab(new FrontMatterSettingTab(this))
   }
-}
-
-function nowDatetime(format: string) {
-  const now = new Date()
-  const formatter: Record<string, string | number> = {
-    yyyy: now.getFullYear(),
-    yy: now.getFullYear().toString().slice(2),
-    MM: now.getMonth() + 1,
-    dd: now.getDate(),
-    hh: now.getHours(),
-    mm: now.getMinutes(),
-    ss: now.getSeconds(),
-  }
-
-  return Object.keys(formatter).reduce(
-    (format, k) => format.replace(k, formatter[k].toString().padStart(k.length, '0')),
-    format
-  )
 }
