@@ -3,6 +3,7 @@ import { editor, getMarkdown } from 'typora'
 import { FrontMatterSettingTab } from './setting-tab'
 import { DEFAULT_SETTINGS, FrontMatterSettings } from './settings'
 import { useTimeStamp } from './features/time-stamp'
+import { TimeSpent } from './features/time-spent'
 
 
 export default class FrontMatterPlugin extends Plugin<FrontMatterSettings> {
@@ -45,6 +46,8 @@ export default class FrontMatterPlugin extends Plugin<FrontMatterSettings> {
         }
         tryToAddUpdatedTime()
       }))
+
+    this.addChild(new TimeSpent(this))
 
     this.registerSettingTab(new FrontMatterSettingTab(this))
   }

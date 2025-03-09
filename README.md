@@ -8,7 +8,8 @@ Auto edit front matter:
 
 - After openning empty note, auto add properties in settings;
 - After openning empty note, auto add `created` datetime;
-- Before save note, auto update `updated` datetime.
+- Before save note, auto update `updated` datetime;
+- `focused` time starts when you click on the note and stops once you click somewhere outside.
 
 ## Preview
 

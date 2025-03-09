@@ -21,6 +21,9 @@ export class FrontMatterSettingTab extends SettingTab {
         propUpdatedDesc: 'Before save note, auto update `updated` datetime.',
         dateFormat: 'Datetime format',
         dateFormatDesc: 'Supported placeholders: `yyyy`, `yy`, `MM`, `dd`, `hh`, `mm`, `ss`',
+        timeSpent: 'Time Spent',
+        propFocused: 'Prop `focused`',
+        propFocusedDesc: '`focused` time starts when you click on the note and stops once you click somewhere outside.',
       },
       'zh-cn': {
         propNames: '默认 front matter',
@@ -32,6 +35,9 @@ export class FrontMatterSettingTab extends SettingTab {
         propUpdatedDesc: '保存笔记前，自动更新 `updated` 日期时间。',
         dateFormat: '时间格式化模板',
         dateFormatDesc: '支持的占位符：`yyyy`, `yy`, `MM`, `dd`, `hh`, `mm`, `ss`',
+        timeSpent: '笔记用时',
+        propFocused: '属性 `focused`',
+        propFocusedDesc: '`focused` 记录了从点击笔记开始到点击笔记外部之间的时长。',
       },
     }
   })
@@ -107,6 +113,26 @@ export class FrontMatterSettingTab extends SettingTab {
         input.placeholder = DEFAULT_SETTINGS.dateFormat
         input.oninput = () => {
           plugin.settings.set('dateFormat', input.value ?? DEFAULT_SETTINGS.dateFormat)
+        }
+      })
+    })
+
+    this.addSettingTitle(t.timeSpent)
+
+    this.addSetting(setting => {
+      setting.addName(t.propFocused)
+      setting.addDescription(t.propFocusedDesc)
+      setting.addCheckbox(checkbox => {
+        checkbox.checked = plugin.settings.get('useFocused')
+        checkbox.onchange = () => {
+          plugin.settings.set('useFocused', checkbox.checked)
+        }
+      })
+      setting.addText(input => {
+        input.value = plugin.settings.get('propNameFocused')
+        input.placeholder = DEFAULT_SETTINGS.propNameFocused
+        input.oninput = () => {
+          plugin.settings.set('propNameFocused', input.value ?? DEFAULT_SETTINGS.propNameFocused)
         }
       })
     })

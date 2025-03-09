@@ -5,6 +5,8 @@ export interface FrontMatterSettings {
   propNameCreated: string
   propNameUpdated: string
   dateFormat: string
+  useFocused: boolean
+  propNameFocused: string
 }
 
 export const DEFAULT_SETTINGS: FrontMatterSettings = {
@@ -14,4 +16,6 @@ export const DEFAULT_SETTINGS: FrontMatterSettings = {
   propNameCreated: 'created',
   propNameUpdated: 'updated',
   dateFormat: 'yyyy-MM-dd hh:mm:ss',
+  useFocused: false,
+  propNameFocused: 'focused'
 }
