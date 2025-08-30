@@ -15,7 +15,7 @@ export function useTimeStamp(plugin: FrontMatterPlugin) {
   }
 
   function tryToAddUpdatedTime() {
-    if (settings.get('useCreated')) {
+    if (settings.get('useUpdated')) {
       editor.docMenu.writeProperty(
         settings.get('propNameUpdated'),
         nowDatetime(settings.get('dateFormat'))
