@@ -17,6 +17,8 @@ export class FrontMatterSettingTab extends SettingTab {
         timeStamp: 'Time Stamp',
         propCreated: 'Prop `created`',
         propCreatedDesc: 'After openning empty note, auto add `created` datetime.',
+        applyCreatedToExisting: 'Add `created` to non-empty notes',
+        applyCreatedToExistingDesc: 'When opening an existing non-empty note that lacks `created`, auto add it.',
         propUpdated: 'Prop `updated`',
         propUpdatedDesc: 'Before save note, auto update `updated` datetime.',
         dateFormat: 'Datetime format',
@@ -31,6 +33,8 @@ export class FrontMatterSettingTab extends SettingTab {
         timeStamp: '时间戳',
         propCreated: '属性 `created`',
         propCreatedDesc: '打开空白笔记后，自动添加 `created` 日期时间。',
+        applyCreatedToExisting: '为非空文档添加 created 属性',
+        applyCreatedToExistingDesc: '打开已有的非空笔记且缺少 `created` 时，自动添加该属性。',
         propUpdated: '属性 `updated`',
         propUpdatedDesc: '保存笔记前，自动更新 `updated` 日期时间。',
         dateFormat: '时间格式化模板',
@@ -83,6 +87,17 @@ export class FrontMatterSettingTab extends SettingTab {
         input.placeholder = DEFAULT_SETTINGS.propNameCreated
         input.oninput = () => {
           plugin.settings.set('propNameCreated', input.value ?? DEFAULT_SETTINGS.propNameCreated)
+        }
+      })
+    })
+
+    this.addSetting(setting => {
+      setting.addName(t.applyCreatedToExisting)
+      setting.addDescription(t.applyCreatedToExistingDesc)
+      setting.addCheckbox(checkbox => {
+        checkbox.checked = plugin.settings.get('applyCreatedToExisting')
+        checkbox.onchange = () => {
+          plugin.settings.set('applyCreatedToExisting', checkbox.checked)
         }
       })
     })

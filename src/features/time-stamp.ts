@@ -7,8 +7,11 @@ export function useTimeStamp(plugin: FrontMatterPlugin) {
 
   function tryToAddCreatedTime() {
     if (settings.get('useCreated')) {
+      const prop = settings.get('propNameCreated')
+
+      if (editor.docMenu.getValueInMeta(prop)) return
       editor.docMenu.writeProperty(
-        settings.get('propNameCreated'),
+        prop,
         nowDatetime(settings.get('dateFormat'))
       )
     }

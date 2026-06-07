@@ -29,7 +29,7 @@ export default class FrontMatterPlugin extends Plugin<FrontMatterSettings> {
         if (docMenu.getMetaNode()) {
           editor.stylize.insertMetaBlock()
         }
-        if (isEmptyDoc) {
+        if (isEmptyDoc || this.settings.get('applyCreatedToExisting')) {
           this.settings.get('propNames').forEach(propName => {
             docMenu.writeProperty(propName, '')
           })

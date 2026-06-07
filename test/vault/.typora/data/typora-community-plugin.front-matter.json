@@ -7,10 +7,12 @@
       "slug"
     ],
     "useCreated": true,
+    "applyCreatedToExisting": true,
     "useUpdated": true,
     "propNameCreated": "created",
     "propNameUpdated": "updated",
     "dateFormat": "yyyy-MM-dd hh:mm:ss",
-    "useFocused": true
+    "useFocused": true,
+    "propNameFocused": "focused"
   }
 }
