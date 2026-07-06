@@ -1,0 +1,16 @@
+{
+  "propNames": "Default front matter",
+  "propNamesDesc": "Add front matter property's key to new note automatically.\nFormat: `prop1, prop2, ...`",
+  "timeStamp": "Time Stamp",
+  "propCreated": "Prop `created`",
+  "propCreatedDesc": "After openning empty note, auto add `created` datetime.",
+  "applyCreatedToExisting": "Add `created` to non-empty notes",
+  "applyCreatedToExistingDesc": "When opening an existing non-empty note that lacks `created`, auto add it.",
+  "propUpdated": "Prop `updated`",
+  "propUpdatedDesc": "Before save note, auto update `updated` datetime.",
+  "dateFormat": "Datetime format",
+  "dateFormatDesc": "Supported placeholders: `yyyy`, `yy`, `MM`, `dd`, `hh`, `mm`, `ss`",
+  "timeSpent": "Time Spent",
+  "propFocused": "Prop `focused`",
+  "propFocusedDesc": "`focused` time starts when you click on the note and stops once you click somewhere outside."
+}

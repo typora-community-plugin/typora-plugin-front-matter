@@ -1,6 +1,7 @@
-import { I18n, SettingTab } from "@typora-community-plugin/core"
+import { I18n, SettingTab, path } from "@typora-community-plugin/core"
 import type FrontMatterPlugin from "./main"
 import { DEFAULT_SETTINGS } from "./settings"
+import * as Locale from './locales/lang.en.json'
 
 
 export class FrontMatterSettingTab extends SettingTab {
@@ -9,45 +10,13 @@ export class FrontMatterSettingTab extends SettingTab {
     return 'Front Matter'
   }
 
-  i18n = new I18n({
-    resources: {
-      'en': {
-        propNames: 'Default front matter',
-        propNamesDesc: 'Add front matter property\'s key to new note automatically.\n Format: `prop1, prop2, ...`',
-        timeStamp: 'Time Stamp',
-        propCreated: 'Prop `created`',
-        propCreatedDesc: 'After openning empty note, auto add `created` datetime.',
-        applyCreatedToExisting: 'Add `created` to non-empty notes',
-        applyCreatedToExistingDesc: 'When opening an existing non-empty note that lacks `created`, auto add it.',
-        propUpdated: 'Prop `updated`',
-        propUpdatedDesc: 'Before save note, auto update `updated` datetime.',
-        dateFormat: 'Datetime format',
-        dateFormatDesc: 'Supported placeholders: `yyyy`, `yy`, `MM`, `dd`, `hh`, `mm`, `ss`',
-        timeSpent: 'Time Spent',
-        propFocused: 'Prop `focused`',
-        propFocusedDesc: '`focused` time starts when you click on the note and stops once you click somewhere outside.',
-      },
-      'zh-cn': {
-        propNames: '默认 front matter',
-        propNamesDesc: '新建笔记时自动添加的 front matter 属性。\n格式：`prop1, prop2, ...`',
-        timeStamp: '时间戳',
-        propCreated: '属性 `created`',
-        propCreatedDesc: '打开空白笔记后，自动添加 `created` 日期时间。',
-        applyCreatedToExisting: '为非空文档添加 created 属性',
-        applyCreatedToExistingDesc: '打开已有的非空笔记且缺少 `created` 时，自动添加该属性。',
-        propUpdated: '属性 `updated`',
-        propUpdatedDesc: '保存笔记前，自动更新 `updated` 日期时间。',
-        dateFormat: '时间格式化模板',
-        dateFormatDesc: '支持的占位符：`yyyy`, `yy`, `MM`, `dd`, `hh`, `mm`, `ss`',
-        timeSpent: '笔记用时',
-        propFocused: '属性 `focused`',
-        propFocusedDesc: '`focused` 记录了从点击笔记开始到点击笔记外部之间的时长。',
-      },
-    }
-  })
+  i18n!: I18n<typeof Locale>
 
   constructor(private plugin: FrontMatterPlugin) {
     super()
+    this.i18n = new I18n<typeof Locale>({
+      localePath: path.join(plugin.manifest.dir!, 'locales')
+    })
   }
 
   show() {
