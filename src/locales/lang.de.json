@@ -1,0 +1,16 @@
+{
+  "propNames": "Standardisierte Front Matter-Eigenschaften",
+  "propNamesDesc": "Front Matter-Eigenschaftsschlüssel automatisch zu neuen Notizen hinzufügen.\nFormat: `prop1, prop2, ...`",
+  "timeStamp": "Zeitstempel",
+  "propCreated": "Eigenschaft `created`",
+  "propCreatedDesc": "Nach dem Öffnen einer leeren Notiz automatisch `created`-Datumszeit hinzufügen.",
+  "applyCreatedToExisting": "`created` zu nicht-leeren Notizen hinzufügen",
+  "applyCreatedToExistingDesc": "Beim Öffnen einer bestehenden nicht-leeren Notiz ohne `created` automatisch hinzufügen.",
+  "propUpdated": "Eigenschaft `updated`",
+  "propUpdatedDesc": "Vor dem Speichern der Notiz automatisch `updated`-Datumszeit aktualisieren.",
+  "dateFormat": "Datumsformat",
+  "dateFormatDesc": "Unterstützte Platzhalter: `yyyy`, `yy`, `MM`, `dd`, `hh`, `mm`, `ss`",
+  "timeSpent": "Verbrachte Zeit",
+  "propFocused": "Eigenschaft `focused`",
+  "propFocusedDesc": "Die `focused`-Zeit beginnt beim Klicken auf die Notiz und endet beim Klick außerhalb."
+}
